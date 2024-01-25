@@ -1,0 +1,28 @@
+*WARNING! w0 HAS BEEN DEPRECATED AND IS FOR REFERENCE ONLY!*
+live code is in basic_commands1.py.
+
+Hi there! First things first! :sweat_smile:
+
+*NOTIFICATIONS:*
+You should configure your settings so that you wont get flooded with notifs and emails.
+
+Desktop:
+1. Click on your profile picture on the very top right of your screen.
+2. Click "Preferences".
+3. Click "Notifications" if you're not already there (its the first option).
+4. Select "Direct messages, mentions, & keywords only".
+5. In that same window/screen, scroll down to the bottom.
+6. Uncheck "Send me email notifications for mentions and direct messages"
+
+Mobile:
+- On mobile, its already default set to "Direct messages, mentions, & keywords only".
+- Can't turn email-notifs off within the mobile app - use desktop to do this.
+
+And you're all set!
+
+To proceed, type in:
+`@Hermes w1`
+(@Hermes <enter> w1 <enter>.)
+
+*WARNING! w0 HAS BEEN DEPRECATED AND IS FOR REFERENCE ONLY!*
+live code is in xxx.py.

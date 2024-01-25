@@ -1,0 +1,59 @@
+version: 1.1
+
+etcd:
+  endpoints:
+    - etcd:xxxx
+
+minio:
+  address: minio:xxxx
+  accessKeyID: 'xxx'
+  secretAccessKey: 'xxx'
+  useSSL: false
+  bucketName: milvus_hermes
+
+metadata:
+  backend: etcd
+
+rocksmq:
+  retentionTimeInMinutes: 10
+
+rootCoord:
+  address: 0.0.0.0
+  minSegmentSizeToEnableIndex: 4096
+
+dataCoord:
+  address: 0.0.0.0
+  dataSync:
+    channelSubName: datasync
+    syncBufferSize: 10000
+
+queryCoord:
+  address: 0.0.0.0
+  queryNode:
+    queryChannelSubName: queryNode
+    streamingSearchResultBufferSize: 10000
+
+indexCoord:
+  address: 0.0.0.0
+  minio:
+    rootPath: /milvus/index
+
+cache:
+  cacheSize: 8GB
+  insertBufferSize: 1GB
+  preloadCollectionData: false
+
+resource:
+  disk:
+    maxSizeThreshold: 0.85
+  ram:
+    ramUsageLimit: 0.85
+
+logs:
+  level: debug
+  trace.enable: false
+  file.enable: true
+  file.maxSize: 300
+  file.maxBackups: 1
+  file.maxAge: 7
+  file.compressed: true

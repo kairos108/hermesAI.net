@@ -1,0 +1,61 @@
+SLACK_APP_TOKEN=xxx
+SLACK_BOT_TOKEN=xxx
+WELCOME_CHANNEL=C0568DCJQBC
+ALLOWED_PRIVATE_CHANNELS=C056Y5638AU,C0677F8LR38,C06AK1U1LMT,C0XXXXXXXXX
+
+
+
+OPENAI_API_KEY=xxx
+# OPENAI_API_KEY=xxx
+# OPENAI_ENGINE=text-davinci-003
+OPENAI_MODEL=gpt-3.5-turbo
+TEMPERATURE=0.5
+FREQ_PENALTY=0.5
+PRES_PENALTY=0.9
+MAX_TOKENS=8000
+MAX_REPLY_TOKENS=1000
+
+GOOGLE_API_KEY_1=xxx
+GOOGLE_CSE_ID_1=xxx
+SERP_API_KEY_1=xxx
+MAX_SEARCH_RESULTS=5 #15 # see below
+MAX_TOKENS_PER_RESULT=900 # see below
+# note about tokens consumed per web search: DDG search results are ALWAYS truncated (no options to NOT truncate). so, 5x search = ~200 tokens, 10x search = ~400 tokens. so it almost doesnt matter what you set MAX_TOKENS_PER_RESULT to, as long as its big enough.
+
+PINECONE_API_KEY=xxx
+PINECONE_INDEX=xxx
+PINECONE_ENV=xxx
+PINECONE_URL=xxx
+PINECONE_DIMENSIONS=1536
+PINECONE_METRIC=cosine
+PINECONE_POD_TYPE=s1 # s1 @ 1024 = 4m, p2 @ 1024 = 1m, p1 @ 1024 = 675k. the bigger the dimensions, the less storage space. choosing s1.
+PINECONE_NAMESPACE=haiNS
+TEXT_EMBEDDING_ENGINE=text-embedding-ada-002
+NUM_OF_MEMORIES=5
+
+MARIADB_HOST=localhost
+MARIADB_PORT=XXXX
+MARIADB_DB=hermes_db
+MARIADB_USER=root
+MARIADB_PASSWORD="XXX"
+MARIADB_TABLE=haiTable
+
+AI_NAME="Hermes"
+# AI_USER_ID=U0XXXXXXXXX
+
+REDIS_HOST=localhost
+REDIS_PORT=XXXX
+REDIS_PASSWORD=XXX
+REDIS_DB=0
+STM_MAX_TOKENS=600
+
+NLP_MODEL_NAME=distilbert-base-uncased
+NLP_MAX_LENGTH=
+
+MYSQL_USERNAME=your_mysql_username
+MYSQL_PASSWORD=your_mysql_password
+
+KAFKA_HOST=your_kafka_host
+KAFKA_PORT=your_kafka_port
+ZOOKEEPER_HOST=your_zookeeper_host
+ZOOKEEPER_PORT=your_zookeeper_port

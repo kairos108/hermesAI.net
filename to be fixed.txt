@@ -1,0 +1,16 @@
+1
+instead of having the function is_unsure, make the ai reply with a strict "Im not sure".
+then, if ai_reply1 == unsure, 
+say "One sec..."
+and do all the stuff.
+
+2
+duckduckgo just upgraded their API, code is now broken and search no longer works!
+
+3
+chatgpt just updated and now no longer replies in the old predictable way for the code to decide if hermes is supplying an "unsure" answer, fix asap!!
+
+4
+pinecone just upgraded to brand new everything, and now also serverless.
+everythings messed up.
+FIX ASAP!

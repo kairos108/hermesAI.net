@@ -1,0 +1,15 @@
+slack-bolt
+slack-sdk
+openai==0.28
+slackclient
+PyYAML
+python-dotenv
+requests
+google-api-python-client
+duckduckgo-search==3.9.6
+pinecone-client
+mysql.connector
+cryptography
+redis
+tiktoken
+numpy

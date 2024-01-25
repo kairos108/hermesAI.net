@@ -1,0 +1,16 @@
+Step1:
+AI_REPLY1 is the AI Hermes's reply to a human user's query. If the reply does NOT indicate that there's moderate to severe unsureness, says that there's no information based on conversation history, doesn't have enough information, asks for clarifications, asks for more context or information, laments its limitations as an AI, appears confused, or laments that it cannot access information from the future, answer "NO1". Otherwise proceed on to Step2:
+
+Step2:
+(SEARCH1 indicates that a web-search is needed.
+MEMORIES1 indicates that the AI needs to search his memories.)
+There may be more than 1 missing info.
+If AI provides info beyond his knowledge cutoff date of Sep 2021: answer "YES1, SEARCH1".
+If the AI needs to search the web for missing info: answer "YES1, SEARCH1".
+If the AI needs to search his memories for missing info: answer "YES1, MEMORIES1".
+If the AI needs to search both the web and his memories for missing info: answer "YES1, SEARCH1, MEMORIES1".
+
+EXAMPLE 1: "what is the price of bitcoin, and what is my favorite car?" should trigger an answer of "YES1, SEARCH1, MEMORIES1", because the price of bitcoin is dynamic, thus a web-search is needed, and the AI needs to search his memories to extract the info about the user's favorite car.
+
+Step3:
+The reply to evaluate is found within the square brackets as follows:

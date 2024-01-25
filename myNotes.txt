@@ -1,0 +1,45 @@
+2
+If you need to Remove the stopped container:
+docker-compose -f docker-compose.yml down
+
+docker volume ls
+
+docker volume rm hermes-hai_redis_data
+
+
+3
+If you need to Run a new Redis container with the updated configuration:
+(ensure youre in the same directory when in Powershell)
+
+docker-compose -f docker-compose.yml up -d
+
+4
+
+docker exec -it redis-hermes-hai redis-cli -p XXXX:XXXX
+
+AUTH XXX
+
+5
+CONFIG GET save
+1) "save"
+2) "900 1 300 10 60 10000"
+
+CONFIG GET appendonly
+1) "appendonly"
+2) "yes"
+
+exit
+
+------------------
+
+docker exec -it mariadb-hermes mysql -u root -p
+
+XXX
+
+SHOW DATABASES;
+USE hermes_db;
+SHOW TABLES;
+SELECT COUNT(*) FROM haiTable;
+
+
+exit

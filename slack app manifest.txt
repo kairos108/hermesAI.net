@@ -1,0 +1,67 @@
+display_information:
+  name: Hermes
+  description: Longterm-memory AI. Remembers all past conversations (millions of vectors). When unsure, independently searches the live web for answers.
+  background_color: "#4781a5"
+  long_description: "\"Hermes, at your service. Pleasure! Normally I wouldn't get mixed up with humans, but for you, I will be making an exception. Come now, we both have places to be!\"\r
+
+    *\r
+
+    One of the world's first AI with FUNCTIONING long-term memory PLUS live web-search to be made semi-public/ for semi-public use. Remembers all past conversations (millions of vectors). When unsure, independently searches the live web for answers. Hand-coded from the ground up by Kairos Siddhartha Kaizen ( https://kaizen.tel ).\r
+
+    *\r
+
+    Hermes was more than just a messenger of the gods - he was a symbol of freedom, creativity, and boundless possibility. Whether he was guiding souls to the underworld or stealing cattle from Apollo, Hermes embodied the power of choice and the thrill of adventure!"
+features:
+  app_home:
+    home_tab_enabled: false
+    messages_tab_enabled: true
+    messages_tab_read_only_enabled: true
+  bot_user:
+    display_name: Hermes
+    always_online: true
+oauth_config:
+  scopes:
+    bot:
+      - app_mentions:read
+      - channels:history
+      - channels:read
+      - chat:write
+      - chat:write.public
+      - files:read
+      - files:write
+      - groups:history
+      - groups:read
+      - groups:write
+      - im:history
+      - im:read
+      - im:write
+      - links.embed:write
+      - links:read
+      - links:write
+      - metadata.message:read
+      - mpim:history
+      - mpim:read
+      - mpim:write
+      - pins:read
+      - pins:write
+      - reminders:read
+      - reminders:write
+      - team:read
+      - bookmarks:read
+      - bookmarks:write
+      - dnd:read
+      - emoji:read
+      - reactions:read
+      - users.profile:read
+      - users:read
+      - users:read.email
+settings:
+  event_subscriptions:
+    bot_events:
+      - app_mention
+      - member_joined_channel
+  interactivity:
+    is_enabled: true
+  org_deploy_enabled: true
+  socket_mode_enabled: true
+  token_rotation_enabled: false

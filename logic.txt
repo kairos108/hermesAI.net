@@ -1,0 +1,58 @@
+INTRO
+Hermes  is an AI Chatbot built using Slack (socket mode), Python, Pinecone, MariaDB, OpenAI, and DuckDuckGo.
+He has longterm memory, and has live-access to the internet. Whenever he is unsure of a query, he will execute both a memories search, and a web search.
+Hermes will then merge the outcomes of both searches, creating an enhanced response to the query, prioritizing and emphasizing memories first in the enhanced response.
+
+LLMs
+Hermes has "multiple brains"; he utilizes multiple instances of OpenAI LLMs and uses one or the other depending on the complexity of the task. Sometimes, he uses them all concurrently.
+For simpler and more straightforward tasks, the ultra-cheap gpt-3.5-turbo model is used, whilst for more complex tasks, the highly capable (but very expensive) gpt-4 model is used.
+Examples of when gpt-4 is used, is when reading the results of both web searches and memory searches, and merging the two results. We will hence describe his multiple brains as the g35t brain, and the g4 brain.
+
+LOGIC 
+Whenever Hermes generates a response, instead of being sent directly to the user, the response is sent to a second instance of his g35t brain first.
+If that second brain does not detect any hints of unsureness, he will return a False by replying with a strict 'NO', and the response is allowed to finally reach the user.
+However, if unsureness is detected, the Python code kicks in and triggers both a web search and a memories search.
+Hermes will then merge the outcomes of both searches, creating an enhanced response to the query, prioritizing and emphasizing memories first in the enhanced response.
+No gatekeeping is done at this point, since testing reveals that the outputs so far are adequate and satisfactory, so the enhanced response is sent directly to the user.
+
+LIVE SEARCHES 
+Using various APIs as a contingency in case one or the other fails, the Hermes application executes a live search using A) DuckDuckGo, B) Google, and finally C) SerpAPI, in that order, and receives a list of matches. The Python code converts all the web search results into a neatly formatted string, and then passes it on to the g4 brain with instructions on how to read, and what to do with, the multiline string.
+
+LONGTERM MEMORIES 
+Hermes is programmed to store all messages posted on all the Slack channels he is in - even private ones - , unless they are simple greetings.
+Metadata such as user-id, username, fullname, channel-id, workspace-id, platform-id, timestamp, and timestring is included in the message object including the message itself, and 2 things happen subsequently.
+First, the entire message object gets transformed into a 1536-dimension cosine vector. 2nd, it gets AES-encrypted and transformed into an encrypted bytes object; it is no longer a string.
+Both the vector, and the AES-encrypted object, gets stored into their respective collection "boxes", queued up for vdb upserts and rdb inserts.
+Two timers run asynchronously on separate threads; the first loops every x seconds. If the number of queued up messages (vectors and encrypted bytes) is more than 33, it will execute a batch upsert + insert.
+The second timer loops every 1 minute, and executes a batch upsert + insert if there are any queued messages for storage.
+Upon a batch upsert/insert, the vector gets upserted into the vdb, whilst the aes-encrypted bytes object gets inserted into the rdb.
+Whenever a request to search for matching past memories is made, the user's query is first transformed into a vector. The vdb is then queried to find matching vectors, and returns only the IDs of matching vectors.
+The rdb is then instructed to fetch all items in its database with matching IDs, and then all these items are decrypted and re-encoded into text/ string objects.
+The Python code then converts all the memories search results into a neatly formatted string, and then passes it on to the g4 brain with instructions on how to read, and what to do with, the multiline string.
+
+FUTURE UPGRADES 
+1. Instead of just passing the raw web search results to Hermes, Hermes will further evaluate which of the search results are the most relevant, and proceed on to browse/ scrape one or more of those webpages/ websites contents for an even more in-depth analysis of the information.
+2. Make Hermes unable to store messages from private channels, but still be able to access memories from public channels and share them when queried.
+
+
+
+
+
+
+
+*PRIVACY*
+# As such, there is very little concern on the issue of data privacy.
+# About metadata, the reason why it is not captured and stored separately, even though its an option, is so that searching for similar past messages is even more effective. For example, if a bunch of people said they loved ice-cream, and we did not include the metadata as to who said it, all sorts of flavours will be returned as results. With metadata integrated right into the message itself, if a user asks which ice-cream he himself likes, it is more likely that he will get much more appropriate matches when searching past memories.
+
+
+
+*langchain entity module*
+Langchain's Entity Memory is an advanced feature designed to enhance the model's understanding and retention of conversational context. It operates as a key-value store for entities that are mentioned during the course of a conversation.
+
+The Entity Memory works by storing and retrieving entities in a conversation. An entity here can refer to a person, place, object, or any relevant piece of information that's worth remembering in a conversation. For example, if a person named "Sam" is mentioned, this information is stored in the memory. If later in the conversation, more information is added about Sam, the model will be able to recall previous information about Sam and incorporate that into its responses.
+
+The purpose of the Entity Memory is to provide the model with a more robust and context-aware understanding of the conversation. Instead of considering each input independently, the model can leverage information from earlier in the conversation to provide more accurate and relevant responses. This is particularly useful in long or complex conversations where the model might otherwise lose track of important details.
+
+To use the Entity Memory, you simply engage in a conversation with the model. The system will automatically identify and store entities as they are mentioned. If you want to refer back to an entity or add more information about it, you can do so at any point in the conversation. The model will automatically recognize this and update its memory accordingly.
+
+Overall, Langchain's Entity Memory is a powerful tool that can greatly enhance the model's ability to engage in meaningful and coherent conversations, particularly those that involve multiple entities or complex topics.
